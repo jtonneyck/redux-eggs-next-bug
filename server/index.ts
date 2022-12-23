@@ -1,13 +1,13 @@
 import { createServer } from "http";
 import { createWrapperInitializer } from "@redux-eggs/next";
 import { parse } from "url";
-import * as next from "next";
+import next from "next";
 
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
-console.log(createWrapperInitializer);
+console.log(createWrapperInitializer)
 
 app.prepare().then(() => {
   createServer((req, res) => {
@@ -21,8 +21,7 @@ app.prepare().then(() => {
     } else {
       handle(req, res, parsedUrl);
     }
-  }).listen(port, (err) => {
-    if (err) throw err;
+  }).listen(port, () => {
     console.log(`> Ready on http://localhost:${port}`);
   });
 });
